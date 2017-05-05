@@ -1,0 +1,26 @@
+{
+    "name": "notadd/alidayu",
+    "type": "notadd-extension",
+    "description": "notadd阿里大鱼API-SDK",
+    "keywords": ["alidayu", "notadd"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cst",
+            "email": "260096556@qq.com",
+            "homepage": "https://github.com/ganlanshu0211",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "notadd/installers": "0.5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Notadd\\Alidayu\\": "src/"
+        }
+    }
+}
