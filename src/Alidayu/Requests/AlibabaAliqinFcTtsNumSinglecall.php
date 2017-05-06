@@ -1,15 +1,15 @@
 <?php
-namespace Flc\Alidayu\Requests;
-
-use Flc\Alidayu\Support;
-
 /**
  * 阿里大于 - 文本转语音通知
  *
- * @author Flc <2016-09-19 21:38:11>
- * @link   http://flc.ren
+ * @author Notadd <2016-09-19 21:38:11>
+ * @link   http://Notadd.com
  * @link   http://open.taobao.com/docs/api.htm?apiId=25444
  */
+namespace Notadd\Alidayu\Requests;
+
+use Notadd\Alidayu\Support;
+
 class AlibabaAliqinFcTtsNumSinglecall extends Request implements IRequest
 {
     /**

@@ -1,13 +1,13 @@
 <?php
-namespace Flc\Alidayu\Requests;
-
 /**
  * 阿里大于 - 多方通话
  *
- * @author Flc <2016-09-20 20:29:29>
- * @link   http://flc.ren
+ * @author Notadd <2016-09-20 20:29:29>
+ * @link   http://notadd.com
  * @link   http://open.taobao.com/docs/api.htm?apiId=25443
  */
+namespace Notadd\Alidayu\Requests;
+
 class AlibabaAliqinFcVoiceNumDoublecall extends Request implements IRequest
 {
     /**

@@ -1,12 +1,12 @@
 <?php
-namespace Flc\Alidayu;
-
 /**
  * 阿里大于 - APP配置信息
  *
  * @author Flc <2016-09-18 21:37:32>
  * @link   http://flc.ren
  */
+namespace Notadd\Alidayu;
+
 class App
 {
     /**

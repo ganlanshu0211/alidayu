@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Class AlidayuController
+ * @package Notadd\Alidayu
+ */
 namespace Notadd\Alidayu\Controllers;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
@@ -10,10 +13,6 @@ use Notadd\Alidayu\Handlers\ValidationHandler;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
-/**
- * Class AlidayuController
- * @package Notadd\Alidayu
- */
 class AlidayuController extends Controller
 {
 

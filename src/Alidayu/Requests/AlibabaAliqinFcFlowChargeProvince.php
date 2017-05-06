@@ -1,13 +1,13 @@
 <?php
-namespace Flc\Alidayu\Requests;
-
 /**
  * 阿里大于 - 流量直充分省接口
  *
- * @author Flc <2016-09-20 21:08:52>
- * @link   http://flc.ren
+ * @author Notadd <2016-09-20 21:08:52>
+ * @link   http://Notadd.com
  * @link   http://open.taobao.com/docs/api.htm?apiId=26477
  */
+namespace Notadd\Alidayu\Requests;
+
 class AlibabaAliqinFcFlowChargeProvince extends Request implements IRequest
 {
     /**

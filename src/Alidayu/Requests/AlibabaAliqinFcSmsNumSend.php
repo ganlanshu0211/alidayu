@@ -1,15 +1,15 @@
 <?php
-namespace Flc\Alidayu\Requests;
-
-use Flc\Alidayu\Support;
-
 /**
  * 阿里大于 - 短信发送
  *
- * @author Flc <2016-09-18 19:43:18>
- * @link   http://flc.ren
+ * @author Notadd <2016-09-18 19:43:18>
+ * @link   http://Notadd.com
  * @link   http://open.taobao.com/docs/api.htm?apiId=25450
  */
+namespace Notadd\Alidayu\Requests;
+
+use Notadd\Alidayu\Support;
+
 class AlibabaAliqinFcSmsNumSend extends Request implements IRequest
 {
     /**

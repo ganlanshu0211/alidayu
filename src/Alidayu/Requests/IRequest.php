@@ -1,12 +1,12 @@
 <?php
-namespace Flc\Alidayu\Requests;
-
 /**
  * 阿里大于 - 请求接口类
  *
  * @author Flc <2016-09-18 19:43:18>
  * @link   http://flc.ren
  */
+namespace Notadd\Alidayu\Requests;
+
 Interface IRequest
 {
     /**

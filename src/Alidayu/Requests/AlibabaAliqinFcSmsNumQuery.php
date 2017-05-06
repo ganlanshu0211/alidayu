@@ -1,13 +1,13 @@
 <?php
-namespace Flc\Alidayu\Requests;
-
 /**
  * 阿里大于 - 短信发送记录查询
  *
- * @author Flc <2016-09-19 21:38:11>
- * @link   http://flc.ren
+ * @author Notadd <2016-09-19 21:38:11>
+ * @link   http://Notadd.com
  * @link   http://open.taobao.com/docs/api.htm?apiId=26039
  */
+namespace Notadd\Alidayu\Requests;
+
 class AlibabaAliqinFcSmsNumQuery extends Request implements IRequest
 {
     /**

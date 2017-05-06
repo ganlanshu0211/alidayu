@@ -5,7 +5,7 @@
  * @author Flc <2016-09-18 19:43:18>
  * @link   http://flc.ren
  */
-namespace Flc\Alidayu\Requests;
+namespace Notadd\Alidayu\Requests;
 
 abstract class Request implements IRequest
 {

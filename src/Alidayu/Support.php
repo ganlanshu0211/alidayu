@@ -1,12 +1,12 @@
 <?php
-namespace Flc\Alidayu;
-
 /**
  * 阿里大于 - 辅助类
  *
  * @author Flc <2016年9月19日 21:01:49>
- * @link   http://flc.ren
+ * @link   http://notadd.com
  */
+namespace Notadd\Alidayu;
+
 class Support
 {
     /**

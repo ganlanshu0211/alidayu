@@ -1,15 +1,15 @@
 <?php
-namespace Flc\Alidayu;
-
-use Exception;
-use Flc\Alidayu\Requests\IRequest;
-
 /**
  * 阿里大于客户端
  *
- * @author Flc <2016-09-18 19:43:18>
- * @link   http://flc.ren
+ * @author Notadd <2016-09-18 19:43:18>
+ * @link   http://notadd.com
  */
+namespace Notadd\Alidayu;
+
+use Exception;
+use Notadd\Alidayu\Requests\IRequest;
+
 class Client
 {   
     /**
@@ -26,7 +26,7 @@ class Client
 
     /**
      * 应用
-     * @var \Flc\Alidayu\App
+     * @var \Notadd\Alidayu\App
      */
     protected $app;
 
@@ -64,7 +64,7 @@ class Client
 
     /**
      * 发起请求数据
-     * @param  \Flc\Alidayu\Requests\IRequest $request 请求类
+     * @param  \Notadd\Alidayu\Requests\IRequest $request 请求类
      * @return false|object
      */
     public function execute(IRequest $request)
