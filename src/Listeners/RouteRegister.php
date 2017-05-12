@@ -31,6 +31,6 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('/', AlidayuController::class . '@alidayu');
         });
         // 验证码图片路由
-        $this->router->get('alidayu/{config?}', AlidayuController::class . '@getAlidayu')->middleware('web');
+        $this->router->get('test', AlidayuController::class . '@test');
     }
 }
