@@ -13,9 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0"
-    },
-    "require-dev": {
+        "php": ">=5.4.0",
         "notadd/installers": "0.5.*"
     },
     "autoload": {

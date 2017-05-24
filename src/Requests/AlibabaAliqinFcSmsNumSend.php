@@ -9,6 +9,8 @@
 namespace Notadd\Alidayu\Requests;
 
 use Notadd\Alidayu\Support;
+use Illuminate\Hashing\BcryptHasher as Hasher;
+use Illuminate\Session\Store as Session;
 
 class AlibabaAliqinFcSmsNumSend extends Request implements IRequest
 {
@@ -19,10 +21,24 @@ class AlibabaAliqinFcSmsNumSend extends Request implements IRequest
     protected $method = 'alibaba.aliqin.fc.sms.num.send';
 
     /**
+     * session
+     * @var Illuminate\Session\Store
+     */
+    protected $session;
+
+    /**
+     * session
+     * @var Illuminate\Hashing\BcryptHasher
+     */
+    protected $hasher;
+
+    /**
      * 初始化
      */
-    public function __construct()
+    public function __construct(Session $session, Hasher $hasher)
     {
+        $this->session = $session;
+        $this->hasher = $hasher;
         $this->params = [
             'extend'             => '',  // 可选 公共回传参数，在“消息返回”中会透传回该参数；
             'sms_type'           => 'normal',  // 必须 短信类型，传入值请填写normal
@@ -39,8 +55,13 @@ class AlibabaAliqinFcSmsNumSend extends Request implements IRequest
      */
     public function setRecNum($value)
     {
-        if (is_array($value))
+        if (is_array($value)) {
             $value = implode(',', $value);
+        }else{
+            $this->session->put('mobileCaptcha', [
+                'mobile' => $this->hasher->make($value),
+            ]);
+        }
 
         $this->params['rec_num'] = $value;
 
