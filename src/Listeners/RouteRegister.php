@@ -10,9 +10,6 @@ namespace Notadd\Alidayu\Listeners;
 
 use Notadd\Alidayu\Controllers\AlidayuController;
 use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
-use Notadd\Foundation\Configuration\Repository;
 
 /**
  * Class RouteRegister.
@@ -30,7 +27,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('set', AlidayuController::class . '@set');
             $this->router->post('/', AlidayuController::class . '@alidayu');
         });
-        // 验证码图片路由
+        // 测试路由
         $this->router->get('test', AlidayuController::class . '@test');
     }
 }

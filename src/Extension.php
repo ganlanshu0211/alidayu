@@ -29,33 +29,25 @@ class Extension extends AbstractExtension
         // 翻译文件
         $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/translations'), 'setting');
 
-        // 加载配置文件
-        // $this->mergeConfigFrom(
-        //     __DIR__.'/../config/alidayu.php', 'alidayu'
-        // );
-
-        // $setting = $this->app->make(SettingsRepository::class);
+        $setting = $this->app->make(SettingsRepository::class);
 
         // 默认设置
-        // config(['alidayu.default' => $setting->get('alidayu')]);
+        config(['alidayu' => $setting->get('alidayu')]);
 
     }
 
     // 注入 alidayu IoC 实例
-    // public function register()
-    // {
-    //     $this->app->singleton('alidayu', function($app)
-    //     {
-    //         return new Alidayu(
-    //             $app['Illuminate\Filesystem\Filesystem'],
-    //             $app['Notadd\Foundation\Configuration\Repository'],
-    //             $app['Notadd\Foundation\Image\ImageManager'],
-    //             $app['Illuminate\Session\Store'],
-    //             $app['Illuminate\Hashing\BcryptHasher'],
-    //             $app['Illuminate\Support\Str']
-    //         );
-    //     });
-    // }
+    public function register()
+    {
+        $this->app->singleton('alidayu', function($app)
+        {
+            return new Alidayu(
+                $app['Notadd\Foundation\Configuration\Repository'],
+                $app['Illuminate\Session\Store'],
+                $app['Illuminate\Hashing\BcryptHasher']
+            );
+        });
+    }
 
     /**
      * Description of extension

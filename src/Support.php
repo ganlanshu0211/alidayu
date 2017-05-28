@@ -77,8 +77,7 @@ class Support
      */
     public function check($mobile, $value)
     {
-        if ( ! $this->session->has('mobileCaptcha'))
-        {
+        if ( ! $this->session->has('mobileCaptcha')) {
             return false;
         }
 
@@ -88,8 +87,12 @@ class Support
 
         $captcha = $this->session->get('mobileCaptcha.captcha');
 
-        $this->session->remove('mobileCaptcha');
+        $bool = $this->hasher->check($value, $captcha);
 
-        return $this->hasher->check($value, $captcha);
+        if($bool) {
+            $this->session->remove('mobileCaptcha');
+        }
+
+        return $bool;
     }
 }

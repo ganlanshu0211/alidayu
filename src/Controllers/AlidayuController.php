@@ -67,7 +67,6 @@ class AlidayuController extends Controller
      * Alidayu validation
      *
      * @param string $Alidayu
-     * @param string $config
      * @return boolean
      */
     public function Alidayu(ValidationHandler $handler)
