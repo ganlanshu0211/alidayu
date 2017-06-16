@@ -10,12 +10,12 @@ use Notadd\Alidayu\Alidayu;
 use Notadd\Alidayu\Handlers\GetHandler;
 use Notadd\Alidayu\Handlers\SetHandler;
 use Notadd\Alidayu\Handlers\ValidationHandler;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
 use Notadd\Alidayu\Client;
 use Notadd\Alidayu\App;
 use Notadd\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 use Notadd\Alidayu\Requests\IRequest;
+use Illuminate\Hashing\BcryptHasher as Hasher;
+use Illuminate\Session\Store as Session;
 
 class AlidayuController extends Controller
 {
@@ -43,24 +43,35 @@ class AlidayuController extends Controller
             // 'sandbox'    => true,  // 是否为沙箱环境，默认false
         ];
 
-
         // 使用方法一
-        $client = new Client(new App($config));
-        $req    = new AlibabaAliqinFcSmsNumSend;
+        $alidayu = app('alidayu');
+        $req     = new AlibabaAliqinFcSmsNumSend(app('Illuminate\Session\Store'), app('Illuminate\Hashing\BcryptHasher'));
 
+        $num = rand(100000, 999999);
         $req->setRecNum('18825078190')
             ->setSmsParam([
-                'code' => rand(100000, 999999),
+                'code' => $num,
                 'product' => '52好工具'
             ])
             ->setSmsFreeSignName('注册验证')
             ->setSmsTemplateCode('SMS_66925302');
 
-        $resp = $client->execute($req);
+        $resp = $alidayu->execute($req);
 
         print_r($resp);
         // print_r($resp->result->model);
+    }
 
+    public function send()
+    {
+        $session = app('session.store');
+        $mobile = $this->request->input('mobile');
+        $num = rand(100000, 999999);
+        $session->put('mobileCaptcha', [
+            'mobile'    =>$mobile,
+            'captcha'   =>$num
+        ]);
+        $mobileCaptcha = $this->request->input('mobileCaptcha');
     }
 
     /**

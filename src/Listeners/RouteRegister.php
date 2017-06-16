@@ -25,7 +25,7 @@ class RouteRegister extends AbstractRouteRegister
         $this->router->group(['middleware' => ['auth:api', 'cross', 'web'], 'prefix' => 'api/alidayu'], function () {
             $this->router->post('get', AlidayuController::class . '@get');
             $this->router->post('set', AlidayuController::class . '@set');
-            $this->router->post('/', AlidayuController::class . '@alidayu');
+            $this->router->post('send', AlidayuController::class . '@send');
         });
         // 测试路由
         $this->router->get('test', AlidayuController::class . '@test');

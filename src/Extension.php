@@ -30,10 +30,10 @@ class Extension extends AbstractExtension
         $this->loadTranslationsFrom(realpath(__DIR__ . '/../resources/translations'), 'setting');
 
         $setting = $this->app->make(SettingsRepository::class);
+       // dd($setting->get('extension.notadd/alidayu'));
 
         // 默认设置
         config(['alidayu' => $setting->get('alidayu')]);
-
     }
 
     // 注入 alidayu IoC 实例

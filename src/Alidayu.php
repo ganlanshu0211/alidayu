@@ -13,6 +13,8 @@ use Notadd\Alidayu\Requests\IRequest;
 use Notadd\Foundation\Configuration\Repository;
 use Illuminate\Hashing\BcryptHasher as Hasher;
 use Illuminate\Session\Store as Session;
+use Illuminate\Support\Str;
+
 
 /**
  * Class Alidayu
@@ -86,22 +88,14 @@ class Alidayu
      */
     protected $format = 'json';
 
-
-    /**
-     * 初始化
-     * @param array $config 阿里大于配置
-     */
-    public function __construct(
-        Repository $config,
-        Session $session,
-        Hasher $hasher,
-    )
+    public function __construct(Repository $config, Session $session, Hasher $hasher)
     {
         $this->config = $config;
         $this->session = $session;
         $this->hasher = $hasher;
 
         $this->configure();
+        dd($config);
 
         // 判断配置
         if (empty($this->app_key) || empty($this->app_secret)) {
@@ -109,10 +103,8 @@ class Alidayu
         }
     }
 
-    /**
-     * @param string $config
-     * @return void
-     */
+
+
     protected function configure()
     {
         if ($this->config->has('alidayu'))
@@ -367,5 +359,34 @@ class Alidayu
         }
         $reponse = curl_exec($ch);
         return $reponse;
+    }
+
+    /**
+     * Captcha check
+     *
+     * @param $value
+     * @return bool
+     */
+    public function check($value)
+    {
+        if ( ! $this->session->has('captcha'))
+        {
+            return false;
+        }
+
+        $key = $this->session->get('captcha.key');
+
+        if ( ! $this->session->get('captcha.sensitive'))
+        {
+            $value = $this->str->lower($value);
+        }
+
+        $bool = $this->hasher->check($value, $key);
+
+        if($bool) {
+            $this->session->remove('captcha');
+        }
+
+        return $bool;
     }
 }
