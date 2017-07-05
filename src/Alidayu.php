@@ -280,7 +280,7 @@ class Alidayu
      * @param  callable $callable 执行函数
      * @return [type]             [description]
      */
-    public static function request($method, callable $callable)
+    public function request($method, callable $callable)
     {
         // A. 校验
         if (empty($method) ||
