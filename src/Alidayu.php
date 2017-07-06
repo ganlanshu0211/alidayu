@@ -10,10 +10,9 @@ namespace Notadd\Alidayu;
 
 use Exception;
 use Notadd\Alidayu\Requests\IRequest;
-use Notadd\Foundation\Configuration\Repository;
+use Notadd\Foundation\Setting\Contracts\SettingsRepository;
 use Illuminate\Hashing\BcryptHasher as Hasher;
 use Illuminate\Session\Store as Session;
-use Illuminate\Support\Str;
 
 
 /**
@@ -22,11 +21,10 @@ use Illuminate\Support\Str;
  */
 class Alidayu
 {
-
     /**
-     * @var Repository $config
+     * @var SettingsRepository
      */
-    public $config;
+    protected $setting;
 
     /**
      * @var Session
@@ -88,32 +86,14 @@ class Alidayu
      */
     protected $format = 'json';
 
-    public function __construct(Repository $config, Session $session, Hasher $hasher)
+    public function __construct(SettingsRepository $setting, Session $session, Hasher $hasher)
     {
-        $this->config = $config;
+
+        $this->setting = $setting;
+        $this->app_key = $this->setting->get('alidayu.app_key');
+        $this->app_secret = $this->setting->get('alidayu.app_secret');
         $this->session = $session;
         $this->hasher = $hasher;
-
-        $this->configure();
-//        dd($config);
-
-        // 判断配置
-        if (empty($this->app_key) || empty($this->app_secret)) {
-            throw new Exception("阿里大于配置信息：app_key或app_secret错误");
-        }
-    }
-
-
-
-    protected function configure()
-    {
-        if ($this->config->has('alidayu'))
-        {
-            foreach($this->config->get('alidayu') as $key => $val)
-            {
-                $this->{$key} = $val;
-            }
-        }
     }
 
     /**

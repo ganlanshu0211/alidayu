@@ -22,7 +22,7 @@ class RouteRegister extends AbstractRouteRegister
     public function handle()
     {
         // api路由定义
-        $this->router->group(['middleware' => ['auth:api', 'cross', 'web'], 'prefix' => 'api/alidayu'], function () {
+        $this->router->group(['middleware' => ['cross', 'web'], 'prefix' => 'api/alidayu'], function () {
             $this->router->post('get', AlidayuController::class . '@get');
             $this->router->post('set', AlidayuController::class . '@set');
             $this->router->post('send', AlidayuController::class . '@send');
