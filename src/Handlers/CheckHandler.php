@@ -27,5 +27,19 @@ class CheckHandler extends AbstractSetHandler
 
         $captcha = $this->request->input('captcha');
 
+        $session = app('Illuminate\Session\Store');
+
+        $captchaInSession = $session->get('mobileCaptcha.captcha');
+
+        $hash = app('Illuminate\Hashing\BcryptHasher');
+
+        $result = $hash->check($captcha, $captchaInSession);
+
+        if ($result) {
+            $this->withCode(200)->withMessage('验证码正确');
+        } else {
+            $this->withCode(402)->withError('验证码错误,请重试');
+        }
+
     }
 }
