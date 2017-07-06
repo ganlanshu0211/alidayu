@@ -11,6 +11,7 @@ namespace Notadd\Alidayu\Handlers;
 
 use Notadd\Foundation\Passport\Abstracts\SetHandler as AbstractSetHandler;
 use Notadd\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
+use Notadd\Alidayu\Models\AlidayuLogs;
 
 /**
  * Class SendHandler.
@@ -51,10 +52,19 @@ class SendHandler extends AbstractSetHandler
 
         $hashedCaptcha = $hash->make($num);
 
-        $session->put('mobileCaptcha', [
+        $session->flash('mobileCaptcha', json_encode([
             'mobile' => $mobile,
             'captcha' => $hashedCaptcha
-        ]);
+        ]));
+
+        $log = new AlidayuLogs();
+
+        $log->mobile = $mobile;
+        $log->captcha = $num;
+        $log->content = "test";
+        $log->register_ip = $this->request->getClientIp();
+
+        $log->save();
 
         $this->withCode(200)->withData($resp)->withMessage('success');
 

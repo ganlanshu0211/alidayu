@@ -30,5 +30,6 @@ class RouteRegister extends AbstractRouteRegister
         });
         // 测试路由,只需用get方法加上参数mobile＝12345678912即可发送短信到12345678912手机上
         $this->router->get('test', AlidayuController::class . '@test');
+        $this->router->get('hash', AlidayuController::class . '@test2');
     }
 }

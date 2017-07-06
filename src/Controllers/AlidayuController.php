@@ -13,6 +13,7 @@ use Notadd\Alidayu\Handlers\GetHandler;
 use Notadd\Alidayu\Handlers\SendHandler;
 use Notadd\Alidayu\Handlers\SetHandler;
 use Notadd\Alidayu\Handlers\CheckHandler;
+use Notadd\Alidayu\Handlers\TestHashHandler;
 
 
 class AlidayuController extends Controller
@@ -93,6 +94,11 @@ class AlidayuController extends Controller
      */
 
     public function test(TestHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    public function test2(TestHashHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
