@@ -35,7 +35,7 @@ class AlidayuController extends Controller
         $config = [
             'app_key'    => '23818873',
             'app_secret' => '009e9695517de37cd60dd32cd1e400a9',
-            'sandbox'    => false,  // 是否为沙箱环境，默认false
+//            'sandbox'    => false,  // 是否为沙箱环境，默认false
         ];
 
         // 使用方法一
