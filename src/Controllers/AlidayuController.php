@@ -9,7 +9,7 @@ use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Alidayu\Alidayu;
 use Notadd\Alidayu\Handlers\GetHandler;
 use Notadd\Alidayu\Handlers\SetHandler;
-use Notadd\Alidayu\Handlers\ValidationHandler;
+use Notadd\Alidayu\Handlers\SendHandler;
 use Notadd\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 
 class AlidayuController extends Controller
@@ -30,14 +30,6 @@ class AlidayuController extends Controller
 
     public function test()
     {
-
-        // 配置信息
-        $config = [
-            'app_key'    => '23818873',
-            'app_secret' => '009e9695517de37cd60dd32cd1e400a9',
-//            'sandbox'    => false,  // 是否为沙箱环境，默认false
-        ];
-
         // 使用方法一
         $alidayu = app('alidayu');
         $req     = new AlibabaAliqinFcSmsNumSend(app('Illuminate\Session\Store'), app('Illuminate\Hashing\BcryptHasher'));
@@ -57,28 +49,12 @@ class AlidayuController extends Controller
         // print_r($resp->result->model);
     }
 
-    public function send()
-    {
-        $session = app('session.store');
-        $mobile = $this->request->input('mobile');
-        $num = rand(100000, 999999);
-        $session->put('mobileCaptcha', [
-            'mobile'    =>$mobile,
-            'captcha'   =>$num
-        ]);
-        $mobileCaptcha = $this->request->input('mobileCaptcha');
-    }
-
-    /**
-     * Alidayu validation
-     *
-     * @param string $Alidayu
-     * @return boolean
-     */
-    public function Alidayu(ValidationHandler $handler)
+    public function send(SendHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
+
+
 
     /**
      * Get handler.
@@ -101,6 +77,11 @@ class AlidayuController extends Controller
      * @throws \Exception
      */
     public function set(SetHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    public function check(ValidateHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }

@@ -26,6 +26,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('get', AlidayuController::class . '@get');
             $this->router->post('set', AlidayuController::class . '@set');
             $this->router->post('send', AlidayuController::class . '@send');
+            $this->router->post('check', AlidayuController::class . '@check');
         });
         // 测试路由
         $this->router->get('test', AlidayuController::class . '@test');
