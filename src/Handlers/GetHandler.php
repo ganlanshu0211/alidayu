@@ -46,4 +46,9 @@ class GetHandler extends DataHandler
             'app_secret' => $this->settings->get('alidayu.app_secret', ''),
         ];
     }
+
+    public function execute()
+    {
+        $this->data();
+    }
 }

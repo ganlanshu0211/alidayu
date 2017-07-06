@@ -20,9 +20,10 @@ class SendHandler extends AbstractSetHandler
     public function execute()
     {
         $this->validate($this->request, [
-            'mobile' => 'required'
+            'mobile' => 'required|regex:/^[0-9]{11}/'
         ], [
-            'mobile.required' => '电话号码为必传参数'
+            'mobile.required' => '电话号码为必传参数',
+            'mobile.regex' => '电话号码必须为11位0-9的数字'
         ]);
 
         $mobile = $this->request->input('mobile');
@@ -44,13 +45,16 @@ class SendHandler extends AbstractSetHandler
 
         $session = app('session.store');
 
+        //哈希验证码并存入session中
+
+        $hash = app('Illuminate\Hashing\BcryptHasher');
+
+        $hashedCaptcha = $hash->make($num);
+
         $session->put('mobileCaptcha', [
             'mobile' => $mobile,
-            'captcha' => $num
+            'captcha' => $hashedCaptcha
         ]);
-        $mobileCaptcha = $this->request->input('mobileCaptcha');
-
-
 
         $this->withCode(200)->withData($resp)->withMessage('success');
 

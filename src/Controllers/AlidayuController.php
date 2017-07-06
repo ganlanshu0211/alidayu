@@ -8,8 +8,9 @@ namespace Notadd\Alidayu\Controllers;
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Alidayu\Alidayu;
 use Notadd\Alidayu\Handlers\GetHandler;
-use Notadd\Alidayu\Handlers\SetHandler;
 use Notadd\Alidayu\Handlers\SendHandler;
+use Notadd\Alidayu\Handlers\SetHandler;
+use Notadd\Alidayu\Handlers\CheckHandler;
 use Notadd\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 
 class AlidayuController extends Controller
@@ -81,7 +82,7 @@ class AlidayuController extends Controller
         return $handler->toResponse()->generateHttpResponse();
     }
 
-    public function check(ValidateHandler $handler)
+    public function check(CheckHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
