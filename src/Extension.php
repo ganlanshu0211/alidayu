@@ -42,7 +42,7 @@ class Extension extends AbstractExtension
         $this->app->singleton('alidayu', function($app)
         {
             return new Alidayu(
-                $app['Notadd\Foundation\Configuration\Repository'],
+                $app['Notadd\Foundation\Setting\Contracts\SettingsRepository'],
                 $app['Illuminate\Session\Store'],
                 $app['Illuminate\Hashing\BcryptHasher']
             );
