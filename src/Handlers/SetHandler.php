@@ -54,6 +54,14 @@ class SetHandler extends AbstractSetHandler
      */
     public function execute()
     {
+        $this->validate($this->request, [
+            'app_key' => 'required',
+            'app_secret' => 'required'
+        ], [
+            'app_key.required' => 'app_key为必填字段',
+            'app_secret.required' => 'app_secret为必填字段'
+        ]);
+
         $this->settings->set('alidayu.app_key', $this->request->input('app_key'));
         $this->settings->set('alidayu.app_secret', $this->request->input('app_secret'));
 
