@@ -10,12 +10,7 @@ use Notadd\Alidayu\Alidayu;
 use Notadd\Alidayu\Handlers\GetHandler;
 use Notadd\Alidayu\Handlers\SetHandler;
 use Notadd\Alidayu\Handlers\ValidationHandler;
-use Notadd\Alidayu\Client;
-use Notadd\Alidayu\App;
 use Notadd\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
-use Notadd\Alidayu\Requests\IRequest;
-use Illuminate\Hashing\BcryptHasher as Hasher;
-use Illuminate\Session\Store as Session;
 
 class AlidayuController extends Controller
 {
@@ -40,7 +35,7 @@ class AlidayuController extends Controller
         $config = [
             'app_key'    => '23818873',
             'app_secret' => '009e9695517de37cd60dd32cd1e400a9',
-            // 'sandbox'    => true,  // 是否为沙箱环境，默认false
+            'sandbox'    => false,  // 是否为沙箱环境，默认false
         ];
 
         // 使用方法一
@@ -48,7 +43,7 @@ class AlidayuController extends Controller
         $req     = new AlibabaAliqinFcSmsNumSend(app('Illuminate\Session\Store'), app('Illuminate\Hashing\BcryptHasher'));
 
         $num = rand(100000, 999999);
-        $req->setRecNum('18825078190')
+        $req->setRecNum('13319236171')
             ->setSmsParam([
                 'code' => $num,
                 'product' => '52好工具'

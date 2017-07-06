@@ -14,13 +14,13 @@ class Support
 {
     /**
      * session
-     * @var Illuminate\Session\Store
+     * @var Hasher
      */
     protected $session;
 
     /**
      * session
-     * @var Illuminate\Session\Store
+     * @var Hasher
      */
     protected $hasher;
 
@@ -58,7 +58,7 @@ class Support
      * @param  integer $len 长度
      * @return string       
      */
-    public static function randStr($len = 6)
+    public function randStr($len = 6)
     {
         $chars = str_repeat('0123456789', $len);
         $chars = str_shuffle($chars);
