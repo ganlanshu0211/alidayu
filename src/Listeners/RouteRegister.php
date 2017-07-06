@@ -28,7 +28,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('send', AlidayuController::class . '@send');
             $this->router->post('check', AlidayuController::class . '@check');
         });
-        // 测试路由
+        // 测试路由,只需用get方法加上参数mobile＝12345678912即可发送短信到12345678912手机上
         $this->router->get('test', AlidayuController::class . '@test');
     }
 }

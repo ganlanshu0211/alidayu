@@ -3,15 +3,17 @@
  * Class AlidayuController
  * @package Notadd\Alidayu
  */
+
 namespace Notadd\Alidayu\Controllers;
 
+use Notadd\Alidayu\Handlers\TestHandler;
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Alidayu\Alidayu;
 use Notadd\Alidayu\Handlers\GetHandler;
 use Notadd\Alidayu\Handlers\SendHandler;
 use Notadd\Alidayu\Handlers\SetHandler;
 use Notadd\Alidayu\Handlers\CheckHandler;
-use Notadd\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
+
 
 class AlidayuController extends Controller
 {
@@ -29,33 +31,18 @@ class AlidayuController extends Controller
         return $Alidayu->create($config);
     }
 
-    public function test()
-    {
-        // 使用方法一
-        $alidayu = app('alidayu');
-        $req     = new AlibabaAliqinFcSmsNumSend(app('Illuminate\Session\Store'), app('Illuminate\Hashing\BcryptHasher'));
-
-        $num = rand(100000, 999999);
-        $req->setRecNum('13319236171')
-            ->setSmsParam([
-                'code' => $num,
-                'product' => '52好工具'
-            ])
-            ->setSmsFreeSignName('注册验证')
-            ->setSmsTemplateCode('SMS_66925302');
-
-        $resp = $alidayu->execute($req);
-
-        print_r($resp);
-        // print_r($resp->result->model);
-    }
-
-    public function send(SendHandler $handler)
+    /**
+     * Set handler.
+     *
+     * @param \Notadd\Alidayu\Handlers\SetHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     * @throws \Exception
+     */
+    public function set(SetHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
-
-
 
     /**
      * Get handler.
@@ -70,19 +57,42 @@ class AlidayuController extends Controller
     }
 
     /**
-     * Set handler.
+     * Send handler.
      *
-     * @param \Notadd\Alidayu\Handlers\SetHandler $handler
+     * @param \Notadd\Alidayu\Handlers\SendHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
-     * @throws \Exception
      */
-    public function set(SetHandler $handler)
+
+    public function send(SendHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
 
+
+    /**
+     * Check handler.
+     *
+     * @param \Notadd\Alidayu\Handlers\CheckHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+
     public function check(CheckHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * just send a message to the mobile
+     * Test handler.
+     *
+     * @param \Notadd\Alidayu\Handlers\SendHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+
+    public function test(TestHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
