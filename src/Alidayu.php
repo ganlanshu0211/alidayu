@@ -95,7 +95,7 @@ class Alidayu
         $this->hasher = $hasher;
 
         $this->configure();
-        dd($config);
+//        dd($config);
 
         // 判断配置
         if (empty($this->app_key) || empty($this->app_secret)) {
