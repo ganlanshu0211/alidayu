@@ -54,11 +54,8 @@ class SetHandler extends AbstractSetHandler
      */
     public function execute()
     {
-        $this->settings->set('alidayu.enabled', $this->request->input('enabled'));
-        $this->settings->set('alidayu.length', $this->request->input('length'));
-        $this->settings->set('alidayu.width', $this->request->input('width'));
-        $this->settings->set('alidayu.height', $this->request->input('height'));
-        $this->settings->set('alidayu.quality', $this->request->input('quality'));
+        $this->settings->set('alidayu.app_key', $this->request->input('app_key'));
+        $this->settings->set('alidayu.app_secret', $this->request->input('app_secret'));
 
         return true;
     }

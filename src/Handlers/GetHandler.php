@@ -42,10 +42,8 @@ class GetHandler extends DataHandler
     public function data()
     {
         return [
-            'length' => $this->settings->get('alidayu.length', ''),
-            'width' => $this->settings->get('alidayu.width', ''),
-            'height' => $this->settings->get('alidayu.height', ''),
-            'quality' => $this->settings->get('alidayu.quality', ''),
+            'app_key' => $this->settings->get('alidayu.app_key', ''),
+            'app_secret' => $this->settings->get('alidayu.app_secret', ''),
         ];
     }
 }
